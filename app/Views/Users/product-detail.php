@@ -39,10 +39,10 @@
 
         <!-- /Top Bar -->
         <!-- Header -->
-        <?php include 'app/Views/Users/layouts/header.php' ?>
+        <?php include 'app/Views/Users/layouts/header.php'?>
         <!-- /Header -->
 
-
+        <?php include "addToCart.php"; ?>
 
 
          <section class="flat-spacing-4 pt_0">
@@ -53,19 +53,19 @@
                             <div class="tf-product-media-wrap wrapper-gallery-scroll">
                                 <div class="mb_10">
                                     <a href="" target="_blank" data-color="beige" class="item item-img-color" data-pswp-width="770px" data-pswp-height="1075px">
-                                        <img class="tf-image-zoom ls-is-cached lazyloaded" data-zoom="<?= $product->image_main ?>" data-src="<?= $product->image_main ?>" src="<?= $product->image_main ?>" alt="">
+                                        <img class="tf-image-zoom ls-is-cached lazyloaded" data-zoom="<?php echo $product->image_main ?>" data-src="<?php echo $product->image_main ?>" src="<?php echo $product->image_main ?>" alt="">
                                     </a>
                                 </div>
 
                                 <div class="d-grid grid-template-columns-2 gap-10" id="gallery-started">
                                     <?php foreach ($productImage as $key => $value): ?>
-                                        <a href="<?= $value->image ?>" target="_blank" data-color="beige" class="item item-img-color" data-pswp-width="770px" data-pswp-height="1075px">
+                                        <a href="<?php echo $value->image ?>" target="_blank" data-color="beige" class="item item-img-color" data-pswp-width="770px" data-pswp-height="1075px">
                                             <img class="radius-10 tf-image-zoom ls-is-cached lazyloaded"
-                                                data-zoom="<?= $value->image ?>"
-                                                data-src="<?= $value->image ?>"
-                                                src="<?= $value->image ?>" alt="img-product">
+                                                data-zoom="<?php echo $value->image ?>"
+                                                data-src="<?php echo $value->image ?>"
+                                                src="<?php echo $value->image ?>" alt="img-product">
                                         </a>
-                                    <?php endforeach ?>
+                                    <?php endforeach?>
                                 </div>
                             </div>
                         </div>
@@ -74,23 +74,23 @@
                                 <div class="tf-zoom-main"></div>
                                 <div class="tf-product-info-list other-image-zoom">
                                     <div class="tf-product-info-title">
-                                        <h5><?= $product->name ?></h5>
+                                        <h5><?php echo $product->name ?></h5>
                                     </div>
                                 </div>
                                 <div class="tf-product-info-price">
-                                    <div class="price-on-sale"><?= number_format($product->price_sale) ?>VND</div>
-                                    <div class="compare-at-price"><?= number_format($product->price) ?>VND</div>
-                                    <div class="badges-on-sale"><span><?= round((intval($product->price_sale) / intval($product->price)) * 100, 2) ?></span>% OFF</div>
+                                    <div class="price-on-sale"><?php echo number_format($product->price_sale) ?>VND</div>
+                                    <div class="compare-at-price"><?php echo number_format($product->price) ?>VND</div>
+                                    <div class="badges-on-sale"><span><?php echo round((intval($product->price_sale) / intval($product->price)) * 100, 2) ?></span>% OFF</div>
                                 </div>
 
                                 <div class="variant-picker-item">
                                     <div class="variant-picker-label">
                                         Color: <span class="fw-6 variant-picker-label-value value-currentColor">Beige</span>
                                     </div>
-                                    
+
                                 </div>
-                                
-                            </div> 
+
+                            </div>
                             <div class="tf-product-info-quantity mt-5">
                                 <div class="quantity-title fw-6">Quantity</div>
                                 <div class="wg-quantity">
@@ -101,11 +101,23 @@
                             </div>
                             <div class="tf-product-info-buy-button">
                                 <form class="">
-                                    <a href="javascript:void(0);" class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn btn-add-to-cart"><span>Add to cart -&nbsp;</span>
-                                        <span class="tf-qty-price total-price">
+                                <a href="javascript:void(0);"
+    class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn
+    <?php echo isset($_SESSION['users']) ? 'btnAddToCart' : '' ?>"
+    <?php echo ! isset($_SESSION['users']) ? 'onclick="handleNotLoggedIn()"' : '' ?>
+>
+    <span>Add to cart -&nbsp;</span>
+    <span class="tf-qty-price total-price">
+        <?php echo number_format($product->price_sale ?? $product->price) ?> VND
+    </span>
+</a>
 
-                                            <?= $product->price_sale != null ? number_format($product->price_sale) : number_format($product->price) ?> VND
-                                        </span></a>
+<script>
+    function handleNotLoggedIn() {
+        alert('Bạn cần đăng nhập trước');
+    }
+</script>
+
                                     <a href="javascript:void(0);" class="tf-product-btn-wishlist hover-tooltip box-icon bg_white wishlist btn-icon-action">
                                         <span class="icon icon-heart"></span>
                                         <span class="tooltip">Add to Wishlist</span>
@@ -214,7 +226,7 @@
                 <div class="tf-sticky-atc-infos">
                     <form class="">
                         <div class="tf-sticky-atc-variant-price text-center">
-                            
+
                         </div>
                         <div class="tf-sticky-atc-btns">
                             <div class="tf-product-info-quantity">
@@ -255,7 +267,7 @@
         </ul>
         <div class="widget-content-tab">
             <div class="widget-content-inner active">
-                <?= $product->description ?>
+                <?php echo $product->description ?>
             </div>
             <div class="widget-content-inner">
                 <table class="tf-pr-attrs">
@@ -288,71 +300,71 @@
                                     <i class="icon icon-star"></i>
                                     <i class="icon icon-star"></i>
                                 </div>
-                                <p>(<?= count($ratingProduct) ?> Rating)</p>
+                                <p>(<?php echo count($ratingProduct) ?> Rating)</p>
                             </div>
                             <?php
-                            $count5 = 0;
-                            $count4 = 0;
-                            $count3 = 0;
-                            $count2 = 0;
-                            $count1 = 0;
-                            foreach ($ratingProduct as $key => $value) {
-                                if ($value->rating == '5') {
-                                    $count5++;
-                                } else if ($value->rating == '4') {
-                                    $count4++;
-                                } else if ($value->rating == '3') {
-                                    $count3++;
-                                } else if ($value->rating == '2') {
-                                    $count2++;
-                                } else if ($value->rating == '1') {
-                                    $count1++;
+                                $count5 = 0;
+                                $count4 = 0;
+                                $count3 = 0;
+                                $count2 = 0;
+                                $count1 = 0;
+                                foreach ($ratingProduct as $key => $value) {
+                                    if ($value->rating == '5') {
+                                        $count5++;
+                                    } else if ($value->rating == '4') {
+                                        $count4++;
+                                    } else if ($value->rating == '3') {
+                                        $count3++;
+                                    } else if ($value->rating == '2') {
+                                        $count2++;
+                                    } else if ($value->rating == '1') {
+                                        $count1++;
+                                    }
                                 }
-                            }
                             ?>
                             <div class="rating-score">
                                 <div class="item">
                                     <div class="number-1 text-caption-1">5</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width: <?= $count5 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:                                                                                                                                                                                                                                         <?php echo $count5 / count($ratingProduct) * 100 ?>%"></div>
                                     </div>
                                     <div class="number-2 text-caption-1">
 
-                                        <?= $count5 ?>
+                                        <?php echo $count5 ?>
                                     </div>
                                 </div>
                                 <div class="item">
                                     <div class="number-1 text-caption-1">4</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width: <?= $count4 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:                                                                                                                                                                                                                                         <?php echo $count4 / count($ratingProduct) * 100 ?>%"></div>
                                     </div>
-                                    <div class="number-2 text-caption-1"> <?= $count4 ?></div>
+                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                     <?php echo $count4 ?></div>
                                 </div>
                                 <div class="item">
                                     <div class="number-1 text-caption-1">3</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width: <?= $count3 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:                                                                                                                                                                                                                                         <?php echo $count3 / count($ratingProduct) * 100 ?>%"></div>
                                     </div>
-                                    <div class="number-2 text-caption-1"> <?= $count3 ?></div>
+                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                     <?php echo $count3 ?></div>
                                 </div>
                                 <div class="item">
                                     <div class="number-1 text-caption-1">2</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width: <?= $count2 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:                                                                                                                                                                                                                                         <?php echo $count2 / count($ratingProduct) * 100 ?>%"></div>
                                     </div>
-                                    <div class="number-2 text-caption-1"> <?= $count2 ?></div>
+                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                     <?php echo $count2 ?></div>
                                 </div>
                                 <div class="item">
                                     <div class="number-1 text-caption-1">1</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width: <?= $count1 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:                                                                                                                                                                                                                                         <?php echo $count1 / count($ratingProduct) * 100 ?>%"></div>
                                     </div>
-                                    <div class="number-2 text-caption-1"> <?= $count1 ?></div>
+                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                     <?php echo $count1 ?></div>
                                 </div>
                             </div>
                         </div>
@@ -362,12 +374,12 @@
                             <?php if (isset($_SESSION['users'])): ?>
 
                                 <div class="tf-btn btn-outline-dark fw-6 btn-comment-review btn-write-review">Write a review</div>
-                            <?php endif ?>
+                            <?php endif?>
                         </div>
                     </div>
                     <div class="reply-comment cancel-review-wrap">
                         <div class="d-flex mb_24 gap-20 align-items-center justify-content-between flex-wrap">
-                            <h5 class=""><?= count($comment) ?> Comments</h5>
+                            <h5 class=""><?php echo count($comment) ?> Comments</h5>
                             <div class="d-flex align-items-center gap-12">
                                 <div class="text-caption-1">Sort by:</div>
                                 <div class="tf-dropdown-sort" data-bs-toggle="dropdown">
@@ -391,53 +403,52 @@
                         </div>
                         <div class="reply-comment-wrap">
                             <?php foreach ($comment as $key => $value): ?>
-                                <?php if ($value->parent == null): ?>
+<?php if ($value->parent == null): ?>
                                     <div class="reply-comment-item">
                                         <div class="user">
                                             <div class="image">
-                                                <img src="<?= $value->image ?>" alt="">
+                                                <img src="<?php echo $value->image ?>" alt="">
                                             </div>
                                             <div>
                                                 <h6>
-                                                    <a href="#" class="link"><?= $value->name ?></a>
+                                                    <a href="#" class="link"><?php echo $value->name ?></a>
                                                 </h6>
                                                 <div class="day text_black-3"><?php
-                                                                                if ($value->rating != null) {
-                                                                                    echo $value->rating . "<i class='icon icon-star text-warning'></i>";
-                                                                                }
+                                                                                  if ($value->rating != null) {
+                                                                                      echo $value->rating . "<i class='icon icon-star text-warning'></i>";
+                                                                                  }
 
-
-                                                                                ?><?= date("d/m/Y", strtotime($value->created_at)) ?></div>
+                                                                              ?><?php echo date("d/m/Y", strtotime($value->created_at)) ?></div>
                                             </div>
                                         </div>
-                                        <p class="text_black-3"><?= $value->comment ?></p>
+                                        <p class="text_black-3"><?php echo $value->comment ?></p>
                                     </div>
 
                                     <?php foreach ($comment as $key2 => $value2): ?>
-                                        <?php if ($value2->parent == $value->id): ?>
+<?php if ($value2->parent == $value->id): ?>
                                             <div class="reply-comment-item type-reply">
                                                 <div class="user">
                                                     <div class="image">
-                                                        <img src="<?= $value2->image ?>" alt="">
+                                                        <img src="<?php echo $value2->image ?>" alt="">
                                                     </div>
                                                     <div>
                                                         <h6>
-                                                            <a href="#" class="link"><?= $value->name ?></a>
+                                                            <a href="#" class="link"><?php echo $value->name ?></a>
                                                         </h6>
-                                                        <div class="day text_black-3"><?= date("d/m/Y", strtotime($value2->created_at)) ?></div>
+                                                        <div class="day text_black-3"><?php echo date("d/m/Y", strtotime($value2->created_at)) ?></div>
                                                     </div>
                                                 </div>
-                                                <p class="text_black-3"><?= $value2->comment ?></p>
+                                                <p class="text_black-3"><?php echo $value2->comment ?></p>
                                             </div>
                                         <?php endif; ?>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+<?php endforeach; ?>
+<?php endif; ?>
+<?php endforeach; ?>
                         </div>
                     </div>
-                    <form class="form-write-review write-review-wrap" action="<?= BASE_URL ?>?act=write-review" method="post">
+                    <form class="form-write-review write-review-wrap" action="<?php echo BASE_URL ?>?act=write-review" method="post">
                         <div class="heading">
-                            <input type="hidden" value="<?= $product->id ?>" name="productId">
+                            <input type="hidden" value="<?php echo $product->id ?>" name="productId">
                             <h5>Write a review:</h5>
                             <div class="list-rating-check">
                                 <input type="radio" id="star5" name="rate" value="5">
@@ -537,9 +548,9 @@
                 <?php foreach ($otherProduct as $key => $value): ?>
                     <div class="card-product fl-item" style="display: block;">
                         <div class="card-product-wrapper">
-                            <a href="<?= BASE_URL ?>?act=product-detail&product_id=<?= $value->id ?>" class="product-img">
-                                <img class="img-product lazyloaded" data-src="<?= $value->image_main ?>" src="<?= $value->image_main ?>" alt="image-product">
-                                <img class="img-hover ls-is-cached lazyloaded" data-src="<?= $value->image_main ?>" src="<?= $value->image_main ?>" alt="image-product">
+                            <a href="<?php echo BASE_URL ?>?act=product-detail&product_id=<?php echo $value->id ?>" class="product-img">
+                                <img class="img-product lazyloaded" data-src="<?php echo $value->image_main ?>" src="<?php echo $value->image_main ?>" alt="image-product">
+                                <img class="img-hover ls-is-cached lazyloaded" data-src="<?php echo $value->image_main ?>" src="<?php echo $value->image_main ?>" alt="image-product">
                             </a>
                             <div class="list-product-btn">
                                 <a href="#quick_add" data-bs-toggle="modal" class="box-icon bg_white quick-add tf-btn-loading">
@@ -565,20 +576,20 @@
                             </div> -->
                         </div>
                         <div class="card-product-info">
-                            <a href="http://localhost/DuAn1/?act=product-detail&amp;product_id=11" class="title link"><?= $value->name ?> </a>
+                            <a href="http://localhost/DuAn1/?act=product-detail&amp;product_id=11" class="title link"><?php echo $value->name ?> </a>
                             <div style="display: flex;">
 
                                 <span class="price" style="margin-right: 5px; text-decoration: line-through;">
-                                    <?php if ($value->price_sale != null) : ?>
+                                    <?php if ($value->price_sale != null): ?>
                                         <span class="price" style="margin-right: 5px; text-decoration: line-through;">
-                                            <?= number_format($value->price) ?>VNĐ
+                                            <?php echo number_format($value->price) ?>VNĐ
                                         </span>
                                         <span class="price price-sale">
-                                            <?= number_format($value->price_sale) ?> VNĐ
+                                            <?php echo number_format($value->price_sale) ?> VNĐ
                                         </span>
                                     <?php else: ?>
                                         <span class="price" style="margin-right: 5px; ">
-                                            <?= number_format($value->price) ?>VNĐ
+                                            <?php echo number_format($value->price) ?>VNĐ
                                         </span>
                                     <?php endif; ?>
                                 </span>
@@ -600,7 +611,7 @@
 
 
     <!-- Footer -->
-    <?php include 'app/Views/Users/layouts/footer.php' ?>
+    <?php include 'app/Views/Users/layouts/footer.php'?>
     <!-- /Footer -->
 
     </div>
@@ -619,7 +630,7 @@
     <script type="text/javascript" src="assets/Users/js/main.js"></script>
 
     <script>
-        let price = <?= isset($product->price_sale) && $product->price_sale != null ? $product->price_sale : (isset($product->price) ? $product->price : 0) ?>;
+        let price =                                                                             <?php echo isset($product->price_sale) && $product->price_sale != null ? $product->price_sale : (isset($product->price) ? $product->price : 0) ?>;
         price = Number(price);
 
         document.querySelector('.btn-decrease-custom').addEventListener('click', function() {
@@ -639,6 +650,93 @@
             let total = price * (quantity + 1);
             document.querySelector('.total-price').textContent = total.toLocaleString() + " VND";
         });
+
+        // bấm nút ADD
+const btnAddToCart = document.querySelector(".btnAddToCart")
+btnAddToCart.addEventListener("click",  function(){
+    let productId="<?php echo $_GET['product_id'] ?>"
+    let quantity = document.querySelector(".quantity-product").value
+
+    let formData =new FormData();
+    formData.append('productId',productId)
+    formData.append('quantity',quantity)
+fetch('<?php echo BASE_URL ?>?act=add-to-cart',{
+    method: "POST",
+    body:formData
+
+    })
+    .then(response =>response.json())
+    .then(data=>{
+        showCart(data)
+})
+    var  myModal = new bootstrap.Modal(document.getElementById('shoppingCart'));
+    myModal.show();
+})
+
+// khi show cart
+const exampleModal = document.getElementById('shoppingCart')
+
+  exampleModal.addEventListener('show.bs.modal', event => {
+    fetch('<?php echo BASE_URL ?>?act=show-to-cart')
+    .then(response =>response.json())
+    .then(data=>{
+        showCart(data)
+})
+
+  })
+function showCart(data){
+    $(".count_product").text(`${data.length}`)
+        $(".tf-mini-cart-items").empty();
+        let UI = ''
+        let tong = 0
+         data.forEach(item =>{
+            UI += `
+            <div class="tf-mini-cart-item">
+    <div class="tf-mini-cart-image">
+        <a href="<?php echo BASE_URL ?>?act=product-detail&product_id=${item.product_id}">
+            <img src="${item.image_main}" alt="">
+        </a>
+    </div>
+    <div class="tf-mini-cart-info">
+        <a class="title link" href="<?php echo BASE_URL ?>?act=product-detail&product_id=${item.product_id}"
+        >${item.name}</a>
+        <div class="price fw-6">
+         ${item.price_sale !=null ? item.price_sale.toLocaleString() : item.price.toLocaleString()}VNĐ
+        </div>
+        <div class="tf-mini-cart-btns">
+            <div class="wg-quantity small">
+                <span class="btn-quantity minus-btn" onclick="handleUpdate('${item.id}','decrease')">-</span>
+                <input type="text" name="number" value="${item.quantity}">
+                <span class="btn-quantity plus-btn" onclick="handleUpdate('${item.id}','increase')" >+</span>
+            </div>
+            <div class="tf-mini-cart-remove" onclick="handleUpdate('${item.id}','delete')">Remove</div>
+        </div>
+    </div>
+</div>
+
+`
+let price =  item.price_sale !=null ? Number(item.price_sale ): Number(item.price)
+let quantity = Number(item.quantity)
+tong = tong +(price*quantity)
+         })
+         $(".tf-mini-cart-items").append(UI)
+         $(".tf-totals-total-value").empty()
+         $(".tf-totals-total-value").text(tong.toLocaleString()+ "VNĐ")
+}
+function handleUpdate(cartDetailId, action){
+    let formData =new FormData();
+    formData.append('cart_detail_id',cartDetailId )
+    formData.append('action',action )
+    fetch('<?php echo BASE_URL ?>?act=update-cart',{
+        method:"POST",
+        body :formData
+
+    })
+    .then(response =>response.json())
+    .then(data=>{
+        showCart(data)
+})
+}
     </script>
 
 </body>
