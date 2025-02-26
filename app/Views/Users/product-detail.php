@@ -53,12 +53,13 @@
                             <div class="tf-product-media-wrap wrapper-gallery-scroll">
                                 <div class="mb_10">
                                     <a href="" target="_blank" data-color="beige" class="item item-img-color" data-pswp-width="770px" data-pswp-height="1075px">
-                                        <img class="tf-image-zoom ls-is-cached lazyloaded" data-zoom="<?php echo $product->image_main ?>" data-src="<?php echo $product->image_main ?>" src="<?php echo $product->image_main ?>" alt="">
+                                        <img class="tf-image-zoom ls-is-cached lazyloaded" data-zoom="<?php echo $product->image_main?>" data-src="<?php echo $product->image_main ?>" src="<?php echo $product->image_main ?>" alt="">
                                     </a>
                                 </div>
 
                                 <div class="d-grid grid-template-columns-2 gap-10" id="gallery-started">
                                     <?php foreach ($productImage as $key => $value): ?>
+
                                         <a href="<?php echo $value->image ?>" target="_blank" data-color="beige" class="item item-img-color" data-pswp-width="770px" data-pswp-height="1075px">
                                             <img class="radius-10 tf-image-zoom ls-is-cached lazyloaded"
                                                 data-zoom="<?php echo $value->image ?>"
@@ -69,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <div class="tf-product-info-wrap mr-6">
                                 <div class="tf-zoom-main"></div>
                                 <div class="tf-product-info-list other-image-zoom">
@@ -80,13 +81,16 @@
                                 <div class="tf-product-info-price">
                                     <div class="price-on-sale"><?php echo number_format($product->price_sale) ?>VND</div>
                                     <div class="compare-at-price"><?php echo number_format($product->price) ?>VND</div>
-                                    <div class="badges-on-sale"><span><?php echo round((intval($product->price_sale) / intval($product->price)) * 100, 2) ?></span>% OFF</div>
+                                    <div class="badges-on-sale">
+    <span>
+        <?php echo round((1 - intval($product->price_sale) / intval($product->price)) * 100, 2) ?>
+    </span>% OFF
+</div>
+
                                 </div>
 
                                 <div class="variant-picker-item">
-                                    <div class="variant-picker-label">
-                                        Color: <span class="fw-6 variant-picker-label-value value-currentColor">Beige</span>
-                                    </div>
+
 
                                 </div>
 
@@ -327,7 +331,7 @@
                                     <div class="number-1 text-caption-1">5</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width:                                                                                                                                                                                                                                         <?php echo $count5 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:                                                                                                                                                                                                                                                                                                   <?php echo $count5 / count($ratingProduct) * 100 ?>%"></div>
                                     </div>
                                     <div class="number-2 text-caption-1">
 
@@ -338,33 +342,33 @@
                                     <div class="number-1 text-caption-1">4</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width:                                                                                                                                                                                                                                         <?php echo $count4 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:                                                                                                                                                                                                                                                                                                   <?php echo $count4 / count($ratingProduct) * 100 ?>%"></div>
                                     </div>
-                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                     <?php echo $count4 ?></div>
+                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                                                                                              <?php echo $count4 ?></div>
                                 </div>
                                 <div class="item">
                                     <div class="number-1 text-caption-1">3</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width:                                                                                                                                                                                                                                         <?php echo $count3 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:                                                                                                                                                                                                                                                                                                   <?php echo $count3 / count($ratingProduct) * 100 ?>%"></div>
                                     </div>
-                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                     <?php echo $count3 ?></div>
+                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                                                                                              <?php echo $count3 ?></div>
                                 </div>
                                 <div class="item">
                                     <div class="number-1 text-caption-1">2</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width:                                                                                                                                                                                                                                         <?php echo $count2 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:                                                                                                                                                                                                                                                                                                   <?php echo $count2 / count($ratingProduct) * 100 ?>%"></div>
                                     </div>
-                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                     <?php echo $count2 ?></div>
+                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                                                                                              <?php echo $count2 ?></div>
                                 </div>
                                 <div class="item">
                                     <div class="number-1 text-caption-1">1</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width:                                                                                                                                                                                                                                         <?php echo $count1 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:                                                                                                                                                                                                                                                                                                   <?php echo $count1 / count($ratingProduct) * 100 ?>%"></div>
                                     </div>
-                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                     <?php echo $count1 ?></div>
+                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                                                                                              <?php echo $count1 ?></div>
                                 </div>
                             </div>
                         </div>
@@ -568,15 +572,10 @@
                                     <span class="tooltip">Quick View</span>
                                 </a>
                             </div>
-                            <!-- <div class="size-list">
-                                <span>S</span>
-                                <span>M</span>
-                                <span>L</span>
-                                <span>XL</span>
-                            </div> -->
+                           
                         </div>
                         <div class="card-product-info">
-                            <a href="http://localhost/DuAn1/?act=product-detail&amp;product_id=11" class="title link"><?php echo $value->name ?> </a>
+                            <a href="http://localhost/DuAn1/?act=product-detail&product_id=11" class="title link"><?php echo $value->name ?> </a>
                             <div style="display: flex;">
 
                                 <span class="price" style="margin-right: 5px; text-decoration: line-through;">
@@ -630,7 +629,7 @@
     <script type="text/javascript" src="assets/Users/js/main.js"></script>
 
     <script>
-        let price =                                                                             <?php echo isset($product->price_sale) && $product->price_sale != null ? $product->price_sale : (isset($product->price) ? $product->price : 0) ?>;
+        let price =                                                                                                <?php echo isset($product->price_sale) && $product->price_sale != null ? $product->price_sale : (isset($product->price) ? $product->price : 0) ?>;
         price = Number(price);
 
         document.querySelector('.btn-decrease-custom').addEventListener('click', function() {

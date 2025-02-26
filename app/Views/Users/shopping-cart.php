@@ -75,7 +75,7 @@
                                     <tr class="tf-cart-item file-delete">
                                         <td class="tf-cart-item_product">
                                             <a href="<?php echo BASE_URL?>?act=product_detail&product_id=<?php echo $value->product_id?>" class="img-box">
-                                                <img src="images/products/white-2.jpg" alt="img-product">
+                                                <img src="<?php echo $value->image_main?>" alt="img-product">
                                             </a>
                                             <div class="cart-info">
                                                 <a href="<?php echo BASE_URL?>?act=product_detail&product_id=<?php echo $value->product_id?>" class="cart-title link"><?php echo $value->name?></a>

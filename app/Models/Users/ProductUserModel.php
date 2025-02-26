@@ -25,8 +25,6 @@ class ProductUserModel
             $stmt = $this->db->pdo->prepare($sql);
         }
 
-
-
         $stmt->execute();
         $result = $stmt->fetchAll();
         return $result;
@@ -97,34 +95,18 @@ class ProductUserModel
     }
     public function writeReviews()
     {
-        $sql = "select * from product_rating where user_id = :user_id and product_id = :product_id";
-        $stmt = $this->db->pdo->prepare($sql);
-        $stmt->bindParam(':user_id', $_SESSION['users']['id']);
-        $stmt->bindParam(':product_id', $_POST['productId']);
-        $stmt->execute();
-        if ($stmt->fetch()) {
-            $sql = "UPDATE `product_rating` SET `rating`= :rating WHERE user_id = :user_id and product_id = :product_id";
-            $stmt = $this->db->pdo->prepare($sql);
-            $stmt->bindParam(':user_id', $_SESSION['users']);
-            $stmt->bindParam(':rating', $_POST['rate']);
-            $stmt->bindParam(':product_id', $_POST['productId']);
-            return   $stmt->execute();
-        }
-
-
-
-
-        $productId =  $_POST['productId'];
-        $rate =  $_POST['rate'];
-        $userid =  $_SESSION['users']['id'];
-        $now = date('Y-m-d H:i:s');
-        $sql = "INSERT INTO `product_rating`(`product_id`, `user_id`, `rating`, `created_at`) VALUES (:product_id,:user_id,:rating,:created_at)";
+        $productId = $_POST['productId'];
+       $rate = $_POST['rate'];
+       $userid =  $_SESSION['users']['id'];
+       $now = date('Y-m-d H:i:s');
+       $sql = "INSERT INTO `product_rating`(`product_id`,`user_id`,`rating`,`created_at`) 
+       VALUE(:product_id,:user_id,:rating,:created_at)";
         $stmt = $this->db->pdo->prepare($sql);
         $stmt->bindParam(':product_id', $productId);
         $stmt->bindParam(':user_id', $userid);
         $stmt->bindParam(':rating', $rate);
         $stmt->bindParam(':created_at', $now);
-        return  $stmt->execute();
+       return $stmt->execute();
     }
 
     public function saveComment()
