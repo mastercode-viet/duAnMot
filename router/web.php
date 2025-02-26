@@ -85,6 +85,32 @@ if($role == "user"){
         $dashBoardController->shoppingCart();
         break;
     }
+    case 'check-out':{  
+        $dashBoardController = new DashboardController();
+        $dashBoardController->checkOut();
+        break;
+    }
+    case 'submit-check-out':{  
+        $dashBoardController = new DashboardController();
+        $dashBoardController->submitCheckOut();
+        break;
+    }
+    case 'show-order':{  
+        $dashBoardController = new DashboardController();
+        $dashBoardController->showOrder();
+        break;
+    }
+    case 'show-order-detail':{  
+        $dashBoardController = new DashboardController();
+        $dashBoardController->showOrderDetail();
+        break;
+    }
+    case 'cancel-order':{  
+        $dashBoardController = new DashboardController();
+        $dashBoardController->cancelOrder();
+        break;
+    }
+
 
    
     
@@ -228,7 +254,21 @@ switch($act){
         $commentRatingController->commentReply();
         break;
     }
-    
+    case 'show-order':{
+        $orderController = new OrderController();
+        $orderController->showOrder();
+        break;
+    }
+    case 'show-order-detail':{
+        $orderController = new OrderController();
+        $orderController->showOrderDetail();
+        break;
+    }
+    case 'order-change-status':{
+        $orderController = new OrderController();
+        $orderController->changeStatus();
+        break;
+    }
     default :{
         $homeController = new HomeController();
         $homeController->dashboard();
