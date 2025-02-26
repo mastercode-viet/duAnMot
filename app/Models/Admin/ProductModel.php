@@ -45,6 +45,7 @@ class ProductModel{
 
     }
     public function addImageToDB($idProduct,$destPathImage){
+        if (!empty($destPathImage)) {
         $sql="
         INSERT INTO `product_image`(`product_id`, `image`) VALUES (:product_id,:image)
         ";
@@ -52,6 +53,10 @@ class ProductModel{
         $stmt->bindParam(':product_id', $idProduct);
         $stmt->bindParam(':image', $destPathImage);
         return $stmt->execute();
+        }else{
+            echo "Đường dẫn ảnh rỗng, không lưu vào CSDL!";
+        return false;
+        }
     }
 
     public function getProductByID(){

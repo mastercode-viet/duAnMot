@@ -25,8 +25,6 @@ class ProductUserModel
             $stmt = $this->db->pdo->prepare($sql);
         }
 
-
-
         $stmt->execute();
         $result = $stmt->fetchAll();
         return $result;
@@ -97,7 +95,11 @@ class ProductUserModel
     }
     public function writeReviews()
     {
-       $productId = $_POST['productId'];
+
+        $productId = $_POST['productId'];
+
+    
+
        $rate = $_POST['rate'];
        $userid =  $_SESSION['users']['id'];
        $now = date('Y-m-d H:i:s');

@@ -135,7 +135,7 @@ class ProductController extends ControllerAdmin
                     exit;
                 }
                 if(!$this->checkValidate()){
-                    header("Location: ".BASE_URL."?role=admin&act=update-product&id".$_GET['id']);
+                    header("Location: ".BASE_URL."?role=admin&act=update-product&id=".$_GET['id']);
                     exit;
                 }
                 $productModel = new ProductModel(); 
