@@ -71,6 +71,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php if(count($data)>0):?>
                                     <?php foreach ($data as $key => $value): ?>
                                     <tr class="tf-cart-item file-delete">
                                         <td class="tf-cart-item_product">
@@ -125,7 +126,13 @@
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
+                                                    <?php else:?>
+                                                        <tr>
+                                                            <td cosplan="4" class="text-center">Không có sản phẩm
 
+                                                            </td>
+                                                        </tr>
+                                                        <?php endif;?>
                                 </tbody>
                             </table>
 
@@ -148,13 +155,7 @@
                                 </div>
                             </div>
                             <div class="tf-page-cart-checkout">
-                                <div class="shipping-calculator">
-                                    <summary class="accordion-shipping-header d-flex justify-content-between align-items-center collapsed" data-bs-target="#shipping" data-bs-toggle="collapse" aria-controls="shipping">
-                                        <h3 class="shipping-calculator-title">Estimate Shipping</h3>
-                                        <span class="shipping-calculator_accordion-icon"></span>
-                                    </summary>
-
-                                </div>
+                              
                                 <div class="cart-checkbox">
                                     <input type="checkbox" class="tf-check" id="cart-gift-checkbox">
                                     <label for="cart-gift-checkbox" class="fw-4">
@@ -184,6 +185,7 @@
                                 <p class="tf-cart-tax">
                                     Taxes and <a href="shipping-delivery.html">shipping</a>  calculated at checkout
                                 </p>
+                                <?php if(count($data)>0):?>
                                 <div class="cart-checkbox">
                                     <input type="checkbox" class="tf-check" id="check-agree">
                                     <label for="check-agree" class="fw-4">
@@ -191,10 +193,14 @@
                                     </label>
                                 </div>
                                 <div class="cart-checkout-btn">
-                                    <a href="checkout.html" class="tf-btn w-100 btn-fill animate-hover-btn radius-3 justify-content-center">
+
+                                    <a href="#" id="link-check-out"
+                                     class="tf-btn w-100 btn-fill animate-hover-btn radius-3 justify-content-center">
                                         <span>Check out</span>
                                     </a>
+                                    
                                 </div>
+                                <?php endif;?>
                                 <div class="tf-page-cart_imgtrust">
                                     <p class="text-center fw-6">Guarantee Safe Checkout</p>
                                     <div class="cart-list-social">
@@ -257,6 +263,17 @@
         window.location.reload()
     }
     )}
+
+    $("#link-check-out").click(function(event){
+       event.preventDefault();
+       if($("#check-agree").is(":checked")){
+        
+        window.location.replace("<?php echo BASE_URL ?>?act=check-out")
+       }else{
+           alert("Vui lòng đồng ý với điều khoản")
+       }
+      
+    })
     </script>
 </body>
 

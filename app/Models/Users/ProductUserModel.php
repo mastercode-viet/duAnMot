@@ -95,7 +95,11 @@ class ProductUserModel
     }
     public function writeReviews()
     {
+
         $productId = $_POST['productId'];
+
+    
+
        $rate = $_POST['rate'];
        $userid =  $_SESSION['users']['id'];
        $now = date('Y-m-d H:i:s');
@@ -108,7 +112,6 @@ class ProductUserModel
         $stmt->bindParam(':created_at', $now);
        return $stmt->execute();
     }
-
     public function saveComment()
     {
         $productId =  $_POST['productId'];

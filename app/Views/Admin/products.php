@@ -93,14 +93,7 @@
                                                 </div>
                                                 <div class="text-tiny">entries</div>
                                             </div>
-                                            <form class="form-search">
-                                                <fieldset class="name">
-                                                    <input type="text" placeholder="Search here..." class="" name="name" tabindex="2" value="" aria-required="true" required="">
-                                                </fieldset>
-                                                <div class="button-submit">
-                                                    <button class="" type="submit"><i class="icon-search"></i></button>
-                                                </div>
-                                            </form>
+                                            
                                         </div>
                                         <a class="tf-button style-1 w208" href="<?=BASE_URL?>?role=admin&act=add-product"><i class="icon-plus"></i>Add Product</a>
                                     </div>
