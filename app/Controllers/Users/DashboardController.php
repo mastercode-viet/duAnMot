@@ -199,7 +199,41 @@ include 'app/Views/Users/product-detail.php';
     }
     public function submitCheckOut(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            
+            $errors = [];
+
+            // Lấy dữ liệu từ form
+            $name = trim($_POST['name']);
+            $address = trim($_POST['address']);
+            $phone = trim($_POST['phone']);
+            $email = trim($_POST['email']);
+            $note = trim($_POST['note']);
+            // $total = $_POST['total'];
+    
+            // Kiểm tra dữ liệu hợp lệ
+            if (empty($name)) {
+                $errors['name'] = "Vui lòng nhập tên.";
+            }
+            if (empty($address)) {
+                $errors['address'] = "Vui lòng nhập địa chỉ.";
+            }
+            if (empty($phone)) {
+                $errors['phone'] = "Vui lòng nhập số điện thoại.";
+            } elseif (!preg_match('/^(0[1-9][0-9]{8,9})$/', $phone)) {
+                $errors['phone'] = "Số điện thoại không hợp lệ.";
+            }
+            if (empty($email)) {
+                $errors['email'] = "Vui lòng nhập email.";
+            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $errors['email'] = "Email không hợp lệ.";
+            }
+    
+            // Nếu có lỗi, lưu vào session và quay lại trang checkout
+            if (!empty($errors)) {
+                $_SESSION['checkout_errors'] = $errors;
+                $_SESSION['checkout_data'] = $_POST;
+                header("Location: " . BASE_URL . "?act=check-out");
+                exit();
+            }  
         $cartModel = new CartUserModel();
         $products = $cartModel->showCartModel();
 

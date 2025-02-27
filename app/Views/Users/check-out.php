@@ -68,6 +68,16 @@
                 <div class="tf-page-cart-wrap layout-2">
                     <div class="tf-page-cart-item">
                         <h5 class="fw-5 mb_20">Billing details</h5>
+                        <?php if (!empty($_SESSION['checkout_errors'])): ?>
+                        <div class="alert alert-danger">
+                            <ul>
+                                <?php foreach ($_SESSION['checkout_errors'] as $error): ?>
+                                    <li><?= $error ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                        <?php unset($_SESSION['checkout_errors']); ?>
+                    <?php endif; ?>
                         <form action="<?= BASE_URL?>?act=submit-check-out" class="form-checkout" method="post">
                           <input type="hidden" value="<?=$total?>" name="total">
                         <div class="box grid-2">

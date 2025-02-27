@@ -58,6 +58,15 @@ class ProductModel{
         return false;
         }
     }
+    public function isProductExists($name, $category_id)
+    {
+        $sql = "SELECT COUNT(*) FROM products WHERE name = :name AND category_id = :category_id";
+        $stmt = $this->db->pdo->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':category_id', $category_id);
+        $stmt->execute();
+        return $stmt->fetchColumn() > 0; // Trả về true nếu sản phẩm đã tồn tại cùng danh mục
+    }
 
     public function getProductByID(){
         $id = $_GET['id'];

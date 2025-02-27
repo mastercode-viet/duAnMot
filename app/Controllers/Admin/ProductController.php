@@ -31,6 +31,17 @@ class ProductController extends ControllerAdmin
             header("Location: ".BASE_URL."?role=admin&act=add-product");
             exit;
         }
+        // kiểm tra sản phẩm đã tồn tại hay chưa 
+     $productModel = new ProductModel();
+     $name = trim($_POST['name']);
+     $category_id = $_POST['category']; // Lấy danh mục từ form
+
+     // Kiểm tra nếu sản phẩm cùng tên và cùng danh mục đã tồn tại
+     if ($productModel->isProductExists($name, $category_id)) {
+         $_SESSION['message'] = "Sản phẩm này đã tồn tại trong danh mục được chọn!";
+         header("Location: " . BASE_URL . "?role=admin&act=add-product");
+         exit();
+     }
         $uploadDir = 'assets/Admin/upload/';
         $allowTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'];
         $destPath = "";
@@ -48,7 +59,7 @@ class ProductController extends ControllerAdmin
                 }
             }
         }
-        $productModel = new ProductModel();
+       
         $idProduct = $productModel->addProductToDB($destPath);
         if(!$idProduct){
             $_SESSION['message'] = "Thêm mới không thành công";
