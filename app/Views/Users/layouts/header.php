@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-xl-3 col-md-4 col-6">
                         <a href="<?=BASE_URL?>" class="logo-header">
-                            <img src="assets/Users/images/logo/logo.svg" alt="logo" class="logo">
+                            <img src="assets/Users/images/collections/go.png" alt="logo" class="logo">
                         </a>
                     </div>
                     <div class="col-xl-6 tf-md-hidden">
@@ -34,11 +34,7 @@
     <ul class="nav-icon d-flex justify-content-end align-items-center gap-20">
         
         <!-- Icon tìm kiếm -->
-        <li class="nav-search">
-            <a href="#canvasSearch" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="nav-icon-item">
-                <i class="icon icon-search"></i>
-            </a>
-        </li>
+        
         
         <!-- Kiểm tra nếu người dùng đã đăng nhập -->
         <?php if (isset($_SESSION['users'])): ?>
@@ -59,7 +55,7 @@
         
         <!-- Giỏ hàng -->
         <li class="nav-cart">
-            <a href="#shoppingCart" data-bs-toggle="modal" class="nav-icon-item">
+            <a href="<?php echo BASE_URL ?>?act=shopping-cart""  class="nav-icon-item">
                 <i class="icon icon-bag"></i>
              
             </a>

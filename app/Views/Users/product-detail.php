@@ -39,13 +39,13 @@
 
         <!-- /Top Bar -->
         <!-- Header -->
-        <?php include 'app/Views/Users/layouts/header.php'?>
+        <?php include 'app/Views/Users/layouts/header.php' ?>
         <!-- /Header -->
 
         <?php include "addToCart.php"; ?>
 
 
-         <section class="flat-spacing-4 pt_0">
+        <section class="flat-spacing-4 pt_0 " style="margin-top: 6rem;">
             <div class="tf-main-product section-image-zoom">
                 <div class="container">
                     <div class="row">
@@ -53,7 +53,7 @@
                             <div class="tf-product-media-wrap wrapper-gallery-scroll">
                                 <div class="mb_10">
                                     <a href="" target="_blank" data-color="beige" class="item item-img-color" data-pswp-width="770px" data-pswp-height="1075px">
-                                        <img class="tf-image-zoom ls-is-cached lazyloaded" data-zoom="<?php echo $product->image_main?>" data-src="<?php echo $product->image_main ?>" src="<?php echo $product->image_main ?>" alt="">
+                                        <img class="tf-image-zoom ls-is-cached lazyloaded" data-zoom="<?php echo $product->image_main ?>" data-src="<?php echo $product->image_main ?>" src="<?php echo $product->image_main ?>" alt="">
                                     </a>
                                 </div>
 
@@ -66,7 +66,7 @@
                                                 data-src="<?php echo $value->image ?>"
                                                 src="<?php echo $value->image ?>" alt="img-product">
                                         </a>
-                                    <?php endforeach?>
+                                    <?php endforeach ?>
                                 </div>
                             </div>
                         </div>
@@ -82,10 +82,10 @@
                                     <div class="price-on-sale"><?php echo number_format($product->price_sale) ?>VND</div>
                                     <div class="compare-at-price"><?php echo number_format($product->price) ?>VND</div>
                                     <div class="badges-on-sale">
-    <span>
-        <?php echo round((1 - intval($product->price_sale) / intval($product->price)) * 100, 2) ?>
-    </span>% OFF
-</div>
+                                        <span>
+                                            <?php echo round((1 - intval($product->price_sale) / intval($product->price)) * 100, 2) ?>
+                                        </span>% OFF
+                                    </div>
 
                                 </div>
 
@@ -105,22 +105,21 @@
                             </div>
                             <div class="tf-product-info-buy-button">
                                 <form class="">
-                                <a href="javascript:void(0);"
-    class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn
-    <?php echo isset($_SESSION['users']) ? 'btnAddToCart' : '' ?>"
-    <?php echo ! isset($_SESSION['users']) ? 'onclick="handleNotLoggedIn()"' : '' ?>
->
-    <span>Add to cart -&nbsp;</span>
-    <span class="tf-qty-price total-price">
-        <?php echo number_format($product->price_sale ?? $product->price) ?> VND
-    </span>
-</a>
+                                    <a href="javascript:void(0);"
+                                        class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn
+                                   <?php echo isset($_SESSION['users']) ? 'btnAddToCart' : '' ?>"
+                                        <?php echo ! isset($_SESSION['users']) ? 'onclick="handleNotLoggedIn()"' : '' ?>>
+                                        <span>Add to cart -&nbsp;</span>
+                                        <span class="tf-qty-price total-price">
+                                            <?php echo number_format($product->price_sale ?? $product->price) ?> VND
+                                        </span>
+                                    </a>
 
-<script>
-    function handleNotLoggedIn() {
-        alert('Bạn cần đăng nhập trước');
-    }
-</script>
+                                    <script>
+                                        function handleNotLoggedIn() {
+                                            alert('Bạn cần đăng nhập trước');
+                                        }
+                                    </script>
 
                                     <a href="javascript:void(0);" class="tf-product-btn-wishlist hover-tooltip box-icon bg_white wishlist btn-icon-action">
                                         <span class="icon icon-heart"></span>
@@ -218,35 +217,7 @@
             </div>
     </div>
     </div>
-    <div class="tf-sticky-btn-atc">
-        <div class="container">
-            <div class="tf-height-observer w-100 d-flex align-items-center">
-                <div class="tf-sticky-atc-product d-flex align-items-center">
-                    <div class="tf-sticky-atc-img">
-                        <img class=" ls-is-cached lazyloaded" data-src="images/shop/products/p-d1.png" alt="" src="images/shop/products/p-d1.png">
-                    </div>
-                    <div class="tf-sticky-atc-title fw-5 d-xl-block d-none">Cotton jersey top</div>
-                </div>
-                <div class="tf-sticky-atc-infos">
-                    <form class="">
-                        <div class="tf-sticky-atc-variant-price text-center">
-
-                        </div>
-                        <div class="tf-sticky-atc-btns">
-                            <div class="tf-product-info-quantity">
-                                <div class="wg-quantity">
-                                    <span class="btn-quantity minus-btn">-</span>
-                                    <input type="text" name="number" value="1">
-                                    <span class="btn-quantity plus-btn">+</span>
-                                </div>
-                            </div>
-                            <a href="javascript:void(0);" class="tf-btn btn-fill radius-3 justify-content-center fw-6 fs-14 flex-grow-1 animate-hover-btn btn-add-to-cart"><span>Add to cart</span></a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+   
     </section>
 
 
@@ -307,31 +278,36 @@
                                 <p>(<?php echo count($ratingProduct) ?> Rating)</p>
                             </div>
                             <?php
-                                $count5 = 0;
-                                $count4 = 0;
-                                $count3 = 0;
-                                $count2 = 0;
-                                $count1 = 0;
-                                foreach ($ratingProduct as $key => $value) {
-                                    if ($value->rating == '5') {
-                                        $count5++;
-                                    } else if ($value->rating == '4') {
-                                        $count4++;
-                                    } else if ($value->rating == '3') {
-                                        $count3++;
-                                    } else if ($value->rating == '2') {
-                                        $count2++;
-                                    } else if ($value->rating == '1') {
-                                        $count1++;
-                                    }
+                            $count5 = 0;
+                            $count4 = 0;
+                            $count3 = 0;
+                            $count2 = 0;
+                            $count1 = 0;
+                            foreach ($ratingProduct as $key => $value) {
+                                if ($value->rating == '5') {
+                                    $count5++;
+                                } else if ($value->rating == '4') {
+                                    $count4++;
+                                } else if ($value->rating == '3') {
+                                    $count3++;
+                                } else if ($value->rating == '2') {
+                                    $count2++;
+                                } else if ($value->rating == '1') {
+                                    $count1++;
                                 }
+                            }
                             ?>
                             <div class="rating-score">
                                 <div class="item">
                                     <div class="number-1 text-caption-1">5</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width:                                                                                                                                                                                                                                                                                                   <?php echo $count5 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:                                                                                    
+                         <?php
+                            if (count($ratingProduct) != 0) {
+                                echo $count5 / count($ratingProduct) * 100;
+                            }
+                            ?> %"></div>
                                     </div>
                                     <div class="number-2 text-caption-1">
 
@@ -342,33 +318,45 @@
                                     <div class="number-1 text-caption-1">4</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width:                                                                                                                                                                                                                                                                                                   <?php echo $count4 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:                        
+                                  <?php if (count($ratingProduct) != 0) {
+                                        echo $count4 / count($ratingProduct) * 100;
+                                    } ?>%"></div>
                                     </div>
-                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                                                                                              <?php echo $count4 ?></div>
+                                    <div class="number-2 text-caption-1"> <?php echo $count4 ?></div>
                                 </div>
                                 <div class="item">
                                     <div class="number-1 text-caption-1">3</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width:                                                                                                                                                                                                                                                                                                   <?php echo $count3 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:  
+                                        <?php if (count($ratingProduct) != 0) {
+                                            echo $count3 / count($ratingProduct) * 100;
+                                        } ?>%"></div>
                                     </div>
-                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                                                                                              <?php echo $count3 ?></div>
+                                    <div class="number-2 text-caption-1"> <?php echo $count3 ?></div>
                                 </div>
                                 <div class="item">
                                     <div class="number-1 text-caption-1">2</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width:                                                                                                                                                                                                                                                                                                   <?php echo $count2 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width:
+                                         <?php if (count($ratingProduct) != 0) {
+                                                echo $count2 / count($ratingProduct) * 100;
+                                            } ?>%"></div>
                                     </div>
-                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                                                                                              <?php echo $count2 ?></div>
+                                    <div class="number-2 text-caption-1"> <?php echo $count2 ?></div>
                                 </div>
                                 <div class="item">
                                     <div class="number-1 text-caption-1">1</div>
                                     <i class="icon icon-star"></i>
                                     <div class="line-bg">
-                                        <div style="width:                                                                                                                                                                                                                                                                                                   <?php echo $count1 / count($ratingProduct) * 100 ?>%"></div>
+                                        <div style="width: 
+                                         <?php if (count($ratingProduct) != 0) {
+                                                echo $count1 / count($ratingProduct) * 100;
+                                            } ?>%"></div>
                                     </div>
-                                    <div class="number-2 text-caption-1">                                                                                                                                                                                                                                                                                                                                                                              <?php echo $count1 ?></div>
+                                    <div class="number-2 text-caption-1"> <?php echo $count1 ?></div>
                                 </div>
                             </div>
                         </div>
@@ -378,7 +366,7 @@
                             <?php if (isset($_SESSION['users'])): ?>
 
                                 <div class="tf-btn btn-outline-dark fw-6 btn-comment-review btn-write-review">Write a review</div>
-                            <?php endif?>
+                            <?php endif ?>
                         </div>
                     </div>
                     <div class="reply-comment cancel-review-wrap">
@@ -407,7 +395,7 @@
                         </div>
                         <div class="reply-comment-wrap">
                             <?php foreach ($comment as $key => $value): ?>
-<?php if ($value->parent == null): ?>
+                                <?php if ($value->parent == null): ?>
                                     <div class="reply-comment-item">
                                         <div class="user">
                                             <div class="image">
@@ -418,18 +406,18 @@
                                                     <a href="#" class="link"><?php echo $value->name ?></a>
                                                 </h6>
                                                 <div class="day text_black-3"><?php
-                                                                                  if ($value->rating != null) {
-                                                                                      echo $value->rating . "<i class='icon icon-star text-warning'></i>";
-                                                                                  }
+                                                                                if ($value->rating != null) {
+                                                                                    echo $value->rating . "<i class='icon icon-star text-warning'></i>";
+                                                                                }
 
-                                                                              ?><?php echo date("d/m/Y", strtotime($value->created_at)) ?></div>
+                                                                                ?><?php echo date("d/m/Y", strtotime($value->created_at)) ?></div>
                                             </div>
                                         </div>
                                         <p class="text_black-3"><?php echo $value->comment ?></p>
                                     </div>
 
                                     <?php foreach ($comment as $key2 => $value2): ?>
-<?php if ($value2->parent == $value->id): ?>
+                                        <?php if ($value2->parent == $value->id): ?>
                                             <div class="reply-comment-item type-reply">
                                                 <div class="user">
                                                     <div class="image">
@@ -445,9 +433,9 @@
                                                 <p class="text_black-3"><?php echo $value2->comment ?></p>
                                             </div>
                                         <?php endif; ?>
-<?php endforeach; ?>
-<?php endif; ?>
-<?php endforeach; ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                     <form class="form-write-review write-review-wrap" action="<?php echo BASE_URL ?>?act=write-review" method="post">
@@ -572,7 +560,7 @@
                                     <span class="tooltip">Quick View</span>
                                 </a>
                             </div>
-                           
+
                         </div>
                         <div class="card-product-info">
                             <a href="http://localhost/DuAn1/?act=product-detail&product_id=11" class="title link"><?php echo $value->name ?> </a>
@@ -610,7 +598,7 @@
 
 
     <!-- Footer -->
-    <?php include 'app/Views/Users/layouts/footer.php'?>
+    <?php include 'app/Views/Users/layouts/footer.php' ?>
     <!-- /Footer -->
 
     </div>
@@ -629,7 +617,7 @@
     <script type="text/javascript" src="assets/Users/js/main.js"></script>
 
     <script>
-        let price =                                                                                                <?php echo isset($product->price_sale) && $product->price_sale != null ? $product->price_sale : (isset($product->price) ? $product->price : 0) ?>;
+        let price = <?php echo isset($product->price_sale) && $product->price_sale != null ? $product->price_sale : (isset($product->price) ? $product->price : 0) ?>;
         price = Number(price);
 
         document.querySelector('.btn-decrease-custom').addEventListener('click', function() {
@@ -651,45 +639,46 @@
         });
 
         // bấm nút ADD
-const btnAddToCart = document.querySelector(".btnAddToCart")
-btnAddToCart.addEventListener("click",  function(){
-    let productId="<?php echo $_GET['product_id'] ?>"
-    let quantity = document.querySelector(".quantity-product").value
+        const btnAddToCart = document.querySelector(".btnAddToCart")
+        btnAddToCart.addEventListener("click", function() {
+            let productId = "<?php echo $_GET['product_id'] ?>"
+            let quantity = document.querySelector(".quantity-product").value
 
-    let formData =new FormData();
-    formData.append('productId',productId)
-    formData.append('quantity',quantity)
-fetch('<?php echo BASE_URL ?>?act=add-to-cart',{
-    method: "POST",
-    body:formData
+            let formData = new FormData();
+            formData.append('productId', productId)
+            formData.append('quantity', quantity)
+            fetch('<?php echo BASE_URL ?>?act=add-to-cart', {
+                    method: "POST",
+                    body: formData
 
-    })
-    .then(response =>response.json())
-    .then(data=>{
-        showCart(data)
-})
-    var  myModal = new bootstrap.Modal(document.getElementById('shoppingCart'));
-    myModal.show();
-})
+                })
+                .then(response => response.json())
+                .then(data => {
+                    showCart(data)
+                })
+            var myModal = new bootstrap.Modal(document.getElementById('shoppingCart'));
+            myModal.show();
+        })
 
-// khi show cart
-const exampleModal = document.getElementById('shoppingCart')
+        // khi show cart
+        const exampleModal = document.getElementById('shoppingCart')
 
-  exampleModal.addEventListener('show.bs.modal', event => {
-    fetch('<?php echo BASE_URL ?>?act=show-to-cart')
-    .then(response =>response.json())
-    .then(data=>{
-        showCart(data)
-})
+        exampleModal.addEventListener('show.bs.modal', event => {
+            fetch('<?php echo BASE_URL ?>?act=show-to-cart')
+                .then(response => response.json())
+                .then(data => {
+                    showCart(data)
+                })
 
-  })
-function showCart(data){
-    $(".count_product").text(`${data.length}`)
-        $(".tf-mini-cart-items").empty();
-        let UI = ''
-        let tong = 0
-         data.forEach(item =>{
-            UI += `
+        })
+
+        function showCart(data) {
+            $(".count_product").text(`${data.length}`)
+            $(".tf-mini-cart-items").empty();
+            let UI = ''
+            let tong = 0
+            data.forEach(item => {
+                UI += `
             <div class="tf-mini-cart-item">
     <div class="tf-mini-cart-image">
         <a href="<?php echo BASE_URL ?>?act=product-detail&product_id=${item.product_id}">
@@ -714,28 +703,29 @@ function showCart(data){
 </div>
 
 `
-let price =  item.price_sale !=null ? Number(item.price_sale ): Number(item.price)
-let quantity = Number(item.quantity)
-tong = tong +(price*quantity)
-         })
-         $(".tf-mini-cart-items").append(UI)
-         $(".tf-totals-total-value").empty()
-         $(".tf-totals-total-value").text(tong.toLocaleString()+ "VNĐ")
-}
-function handleUpdate(cartDetailId, action){
-    let formData =new FormData();
-    formData.append('cart_detail_id',cartDetailId )
-    formData.append('action',action )
-    fetch('<?php echo BASE_URL ?>?act=update-cart',{
-        method:"POST",
-        body :formData
+                let price = item.price_sale != null ? Number(item.price_sale) : Number(item.price)
+                let quantity = Number(item.quantity)
+                tong = tong + (price * quantity)
+            })
+            $(".tf-mini-cart-items").append(UI)
+            $(".tf-totals-total-value").empty()
+            $(".tf-totals-total-value").text(tong.toLocaleString() + "VNĐ")
+        }
 
-    })
-    .then(response =>response.json())
-    .then(data=>{
-        showCart(data)
-})
-}
+        function handleUpdate(cartDetailId, action) {
+            let formData = new FormData();
+            formData.append('cart_detail_id', cartDetailId)
+            formData.append('action', action)
+            fetch('<?php echo BASE_URL ?>?act=update-cart', {
+                    method: "POST",
+                    body: formData
+
+                })
+                .then(response => response.json())
+                .then(data => {
+                    showCart(data)
+                })
+        }
     </script>
 
 </body>

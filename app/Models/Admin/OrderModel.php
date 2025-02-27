@@ -35,6 +35,6 @@ class OrderModel{
         $stmt = $this->db->pdo->prepare($sql);
         $stmt->bindParam(':status', $status);
         $stmt->bindParam(':order_id', $order_id);
-         return $stmt->execute();
+        return $stmt->execute();
     }
 }

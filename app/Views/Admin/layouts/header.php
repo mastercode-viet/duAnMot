@@ -9,10 +9,10 @@
                                 </div>
                                 <form class="form-search flex-grow">
                                     <fieldset class="name">
-                                        <input type="text" placeholder="Search" class="show-search" name="name" tabindex="2" value="" aria-required="true" required="">
+                                       
                                     </fieldset>
                                     <div class="button-submit">
-                                        <button class="" type="submit"><i class="icon-search"></i></button>
+                                       
                                     </div>
                                     <div class="box-content-search" id="box-content-search">
                                         <ul class="mb-24">

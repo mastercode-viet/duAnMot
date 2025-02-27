@@ -75,10 +75,7 @@
                                     <label for="first-name">Name</label>
                                     <input type="text" id="first-name" placeholder="Name" name="name" value="<?= $currentUser->name?>">
                                 </fieldset>
-                              
                             </div>
-              
-                      
                             <fieldset class="box fieldset">
                                 <label for="address">Address</label>
                                 <input type="text" id="address" value="<?= $currentUser->address?>" name="address">
