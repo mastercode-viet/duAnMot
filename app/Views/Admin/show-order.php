@@ -56,12 +56,12 @@
                 </div>
                 <!-- /preload -->
                 <!-- section-menu-left -->
-                <?php include 'app/Views/Admin/layouts/sidebar.php' ?>
+                <?php include 'app/Views/Admin/layouts/sidebar.php'?>
                 <!-- /section-menu-left -->
                 <!-- section-content-right -->
                 <div class="section-content-right">
                     <!-- header-dashboard -->
-                    <?php include 'app/Views/Admin/layouts/header.php' ?>
+                    <?php include 'app/Views/Admin/layouts/header.php'?>
                     <!-- /header-dashboard -->
                     <!-- main-content -->
                     <div class="main-content">
@@ -70,44 +70,45 @@
                             <!-- main-content-wrap -->
                             <div class="main-content-wrap">
                                 <div class="wg-box">
-                                   
+
                                     <div class="title-box">
                                         Xem chi tiết đơn hàng
                                     </div>
                                   <table class="table">
                                   <thead>
                     <tr>
-                        <th>STT</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Ảnh sản phẩm</th>
-                        <th>Số lượng</th>
-                        <th>Gía tiền sản phẩm</th>
-                        <th>Tổng tiền</th>
-                       
+                    <th style="text-align: center;">STT</th>
+<th style="text-align: center;">Tên Khách hàng</th>
+<th style="text-align: center;">Số điện thoại</th>
+<th style="text-align: center;">Địa chỉ</th>
+<th style="text-align: center;">Tổng tiền</th>
+<th style="text-align: center;">Trạng thái đơn hàng</th>
+
+
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach($orders as $key => $value): ?>
+                <?php foreach ($orders as $key => $value): ?>
                     <tr>
-                        <td class="text-center"><?=$key+1?></td>
-                        <td class="text-center"><?=$value->name?></td>
-                        <td class="text-center"><?=$value->phone?></td>
-                        <td class="text-center"><?=$value->address?></td>
-                        <td class="text-center"><?=number_format($value->total)?>VNĐ</td>
+                        <td class="text-center"><?php echo $key + 1 ?></td>
+                        <td class="text-center"><?php echo $value->name ?></td>
+                        <td class="text-center"><?php echo $value->phone ?></td>
+                        <td class="text-center"><?php echo $value->address ?></td>
+                        <td class="text-center"><?php echo number_format($value->total) ?>VNĐ</td>
                         <td class="text-center">
-                            <form action="<?=BASE_URL?>?role=admin&act=order-change-status" method="post">
-                                <input type="hidden" name="order_id" value="<?=$value->id?>">
+                            <form action="<?php echo BASE_URL ?>?role=admin&act=order-change-status" method="post">
+                                <input type="hidden" name="order_id" value="<?php echo $value->id ?>">
                         <select name="status" class="select-status">
-                            <option <?php if($value->status == 'pending'): ?>selected<?php endif; ?>value="pending">Chờ xử lí</option>;
-                            <option <?php if($value->status == 'completed'):?>selected<?php endif; ?> value="completed">Đã hoàn thành</option>
-                            <option <?php if($value->status == 'canceled'):?>selected<?php endif; ?>value="canceled">Đã hủy</option>
+                            <option                                                                       <?php if ($value->status == 'pending'): ?>selected<?php endif; ?>value="pending">Chờ xử lí</option>;
+                            <option                                                                       <?php if ($value->status == 'completed'): ?>selected<?php endif; ?> value="completed">Đã hoàn thành</option>
+                            <option                                                                       <?php if ($value->status == 'canceled'): ?>selected<?php endif; ?>value="canceled">Đã hủy</option>
                         </select>
                         </form>
                     </td>
                         <td class="text-end">
-                            <a href="<?= BASE_URL?>?role=admin&act=show-order-detail&order_id=<?=$value->id?>" class="btn btn-success">Chi tiết đặt hàng</a>
-                         
-                          
+                            <a href="<?php echo BASE_URL ?>?role=admin&act=show-order-detail&order_id=<?php echo $value->id ?>" class="btn btn-success">Chi tiết đặt hàng</a>
+
+
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -120,7 +121,7 @@
                     </div>
                     <!-- /main-content-wrap -->
                     <!-- bottom-page -->
-                    <?php include 'app/Views/Admin/layouts/footer.php' ?>
+                    <?php include 'app/Views/Admin/layouts/footer.php'?>
                     <!-- /bottom-page -->
                 </div>
                 <!-- /main-content -->

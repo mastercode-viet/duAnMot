@@ -35,7 +35,6 @@ class UserModel
         $role = $_POST['role'];
         $image = $deshPath;
         $now = date('Y-m-d H:i:s');
-
         if ($this->isEmailExists($email)) {
             throw new Exception("Email đã tồn tại trong hệ thống. Vui lòng chọn email khác.");
         }

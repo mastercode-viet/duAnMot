@@ -45,7 +45,7 @@
         <!-- Header -->
         <?php include 'app/Views/Users/layouts/header.php'?>
         <!-- /Header -->
-        <!-- Slider -->
+        
         <?php include 'app/Views/Users/layouts/slideshow.php'?>
         <!-- /Slider -->
         <!-- Marquee -->
@@ -69,11 +69,33 @@
                                 <div class="swiper-slide" lazy="true">
                                     <div class="collection-item style-left hover-img">
                                         <div class="collection-inner">
-                                            <a href="<?= BASE_URL?>?act=shop&category_id=<?= $value->id ?>" class="collection-image img-style">
+                                            <?php
+// Mảng chứa đường dẫn đến các ảnh
+$images = [
+    "assets/Users/images/collections/1.png",
+    "assets/Users/images/collections/2.png",
+    "assets/Users/images/collections/3.png",
+    "assets/Users/images/collections/4.png",
+    "assets/Users/images/collections/5.png",
+    "assets/Users/images/collections/6.png",
+    "assets/Users/images/collections/7.png",
+    "assets/Users/images/collections/8.png",
+    "assets/Users/images/collections/9.png",
+
+];
+
+// Lấy ngẫu nhiên 1 ảnh từ mảng
+$randomImage = $images[array_rand($images)];
+?>
+
+<a href="<?= BASE_URL ?>?act=shop&category_id=<?= $value->id ?>" class="collection-image img-style">
+    <img class="lazyload" data-src="<?= $randomImage ?>" alt="">
+</a>
+                                            <!-- <a href="<?= BASE_URL?>?act=shop&category_id=<?= $value->id ?>" class="collection-image img-style">
                                                 <img class="lazyload" data-src="assets/Users/images/collections/1.png"  alt=""> 
                                               
                                                 
-                                            </a>
+                                            </a> -->
                                             <div class="collection-content">
                                                 <a href="<?= BASE_URL?>?act=shop&category_id=<?= $value->id ?>" class="tf-btn collection-title hover-icon fs-15"><span>
                                                     <?= $value->name ?>
@@ -111,7 +133,7 @@
                         <div class="card-product-wrapper">
                             <a href="<?= BASE_URL ?>?act=product-detail&product_id=<?= $value->id?>" class="product-img">
                                 <img class="lazyload img-product" data-src="<?=$value->image_main?>" src="<?=$value->image_main?>" alt="image-product">
-                                <img class="lazyload img-hover" data-src="assets/Users/images/products/white-1.jpg" src="assets/Users/images/products/white-1.jpg" alt="image-product">
+                                <img class="lazyload img-hover" data-src="<?=$value->image_main?>" src="<?=$value->image_main?>" alt="image-product">
                             </a>
                             <div class="list-product-btn">
                                 <a href="#quick_add" data-bs-toggle="modal" class="box-icon bg_white quick-add tf-btn-loading">
@@ -129,12 +151,7 @@
                                     <span class="tooltip">Quick View</span>
                                 </a>
                             </div>
-                            <!-- <div class="size-list">
-                                <span>S</span>
-                                <span>M</span>
-                                <span>L</span>
-                                <span>XL</span>
-                            </div> -->
+                       
                         </div>
                         <div class="card-product-info">
                             <a href="<?= BASE_URL ?>?act=product-detail&product_id=<?= $value->id?>" class="title link"><?=$value->name?></a>
