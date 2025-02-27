@@ -18,20 +18,26 @@ class CategoryController extends ControllerAdmin
                 header("Location:" . BASE_URL . "?role=admin&act=add-category");
                 exit();
             }
+    
             $categoryModel = new CategoryModel();
+            // Kiểm tra trùng danh mục trước khi thêm mới
+            if ($categoryModel->isCategoryExists($_POST['name'])) {
+                $_SESSION['message'] = "Danh mục này đã tồn tại.";
+                header("Location: " . BASE_URL . "?role=admin&act=add-category");
+                exit;
+            }
+    
             $message = $categoryModel->addCategory();
-
-
             if ($message) {
                 $_SESSION['message'] = "Thêm mới thành công";
                 header("Location: " . BASE_URL . "?role=admin&act=all-category");
                 exit;
             } else {
-            $_SESSION['message'] = "Yêu cầu không hợp lệ.";
-            header("Location: " . BASE_URL . "?role=admin&act=add-category");
-            exit;
+                $_SESSION['message'] = "Yêu cầu không hợp lệ.";
+                header("Location: " . BASE_URL . "?role=admin&act=add-category");
+                exit;
+            }
         }
-    }
     }
 
 

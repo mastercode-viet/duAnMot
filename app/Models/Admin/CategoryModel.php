@@ -22,6 +22,15 @@ class CategoryModel
         return $stmt->execute();
     
     }
+     // Hàm kiểm tra danh mục có tồn tại hay không
+     public function isCategoryExists($name)
+     {
+         $sql = "SELECT COUNT(*) FROM categories WHERE name = :name";
+         $stmt = $this->db->pdo->prepare($sql);
+         $stmt->bindParam(':name', $name);
+         $stmt->execute();
+         return $stmt->fetchColumn() > 0;
+     }
     public function deleteCategory($id)
     {
         $sql = "DELETE FROM categories WHERE id = :id";
